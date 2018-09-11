@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+   <html>
+   <head>
+       <title>gauges</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   </head>
+   <body>
+  <div id="gauge_div" style="width:750px; height: 300px;"></div>
+
+   <div class="col-md-offset-2 col-md-3">
+        <button onclick="changeTemp(-1)"><i class="fa fa-backward fa-2x" aria-hidden="true"></i></button>
+         <button id="my-button" onclick="changeTemp(0)"><i class="fa fa-play fa-2x" aria-hidden="true"></i></button> 
+        <button onclick="changeTemp(1)"><i class="fa fa-forward fa-2x" aria-hidden="true"></i></button>
+            </div>
+           <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+            google.charts.load('current', {'packages':['gauge']});
+            google.charts.setOnLoadCallback(drawGauge);
+            var gaugeOptions = {min: 0, max: 2000,minorTicks: 10};
+            var gauge;
+            function drawGauge() {
+                gaugeData = new google.visualization.DataTable();
+                gaugeData.addColumn('number', 'NH');
+                gaugeData.addColumn('number', 'PLA');
+                gaugeData.addRows(2);
+                gaugeData.setCell(0, 0, 120);
+                gaugeData.setCell(0, 1, 80);
+                gauge = new google.visualization.Gauge(document.getElementById('gauge_div'));
+                gauge.draw(gaugeData, gaugeOptions);
+            }
+            function changeTemp(dir) {
+                gaugeData.setValue(0, 0, gaugeData.getValue(0, 0) + dir * 10);
+                gaugeData.setValue(0, 0, gaugeData.getValue(0, 0) + dir * 5);
+                gaugeData.setValue(0, 1, gaugeData.getValue(0, 1) + dir * 20);
+                gauge.draw(gaugeData, gaugeOptions);
+            }
+            </script>
+   </body>
+   </html>

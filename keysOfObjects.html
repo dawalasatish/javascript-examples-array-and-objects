@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<h3>Objects Key Value: <span id="demo"></span></h3> 
+		<br>
+		<h3>Objects Key value length: <span id="demo1"></span></h3>
+		<script type="text/javascript">
+			var myArray = new Object();
+			myArray["firstname"] = "Gareth";
+			myArray["lastname"] = "Simpson";
+			myArray["age"] = 21;
+			obj = Object.keys(myArray);
+			obj4 = Array.isArray(obj);
+			console.log(obj)
+			document.getElementById('demo').innerHTML = obj;
+
+			var myArr = {};
+			myArr.obj1 =  "Satish";
+			myArr.obj2 =  "kumar";
+			obj3 = Object.keys(myArr).length;
+			console.log(obj3);
+			document.getElementById('demo1').innerHTML = obj3;
+		</script>
+	</body>
+</html>
